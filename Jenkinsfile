@@ -2,20 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('build') {
             agent {
-                docker {
-                    image 'maven:3.6.3-openjdk-11-slim'
-                }
+                docker { image 'maven:3.6.3-openjdk-11-slim'}
             }
             steps {
-                sh 'mvn clean install'
+                sh 'mvn -B verify'
             }
         }
 
