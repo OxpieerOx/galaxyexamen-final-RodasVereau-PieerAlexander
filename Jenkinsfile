@@ -7,7 +7,7 @@ pipeline {
                 docker { image 'maven:3.6.3-openjdk-11-slim'}
             }
             steps {
-                echo 'Llegué a la etapa de construcción'
+                sh 'mvn -B verify'
             }
         }
 
