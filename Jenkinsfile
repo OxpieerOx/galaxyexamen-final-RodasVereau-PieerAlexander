@@ -3,11 +3,8 @@ pipeline {
 
     stages {
         stage('build') {
-            agent {
-                docker { image 'maven:3.6.3-openjdk-11-slim'}
-            }
             steps {
-                sh 'mvn -B verify'
+               sh 'docker --version'
             }
         }
 
