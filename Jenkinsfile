@@ -8,10 +8,14 @@ pipeline {
             }
         }
 
-          stage('build') {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'maven:3.6.3-openjdk-11-slim'
+                }
+            }
             steps {
-                echo 'Llegué a la etapa de construcción'
-                // Puedes agregar más mensajes de registro si es necesario
+                sh 'mvn clean install'
             }
         }
 
