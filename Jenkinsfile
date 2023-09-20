@@ -9,6 +9,16 @@ pipeline {
         }
 
         stage('build') {
+            agent {
+                docker {
+                    image 'maven:3.6.3-openjdk-11-slim'
+                    args '-v /path/to/your/m2/repository:/root/.m2/repository' // Mapear el repositorio local de Maven si es necesario
+                }
+                tools {
+                    // Utiliza la instalación de Maven que has configurado en Jenkins
+                    maven 'Maven-3.6.3'
+                }
+            }
             steps {
                 sh 'mvn clean install'
             }
